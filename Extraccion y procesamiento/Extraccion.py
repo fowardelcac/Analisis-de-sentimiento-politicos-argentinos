@@ -23,3 +23,4 @@ for i in usuarios:
     ii = str(i)
     key = (f'({i}) since:2022-04-13')
     dic_tw[i] = get_tweets(key, 5, i)
+    print('Recibido: ', i)
