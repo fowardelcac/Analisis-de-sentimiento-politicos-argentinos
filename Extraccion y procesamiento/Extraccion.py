@@ -4,23 +4,19 @@ import re
 
 usuarios = ['@JMilei', '@alferdez', '@CFKArgentina', '@PatoBullrich', '@horaciorlarreta']
 
-def get_tweets(palabra_clave, limite, usuario):
-    lista = []
-    for tw in st.TwitterSearchScraper(palabra_clave).get_items():
-        if len(lista) == limite:
-            break
-        else:
-            text = tw.rawContent
-            menciones = re.findall(r"@\w+", text)
-            menciones_filtradas = [mencion for mencion in menciones if mencion != usuario]
-            if len(menciones_filtradas) == 0:
-                lista.append([tw.date, text])
-    
-    return crear_df(lista)
-
 def crear_df(lista):
     return pd.DataFrame(lista, columns=['Date', 'Tweet'])
-  
+
+def get_tweets(palabra_clave, usuario):
+    lista = []
+    for tw in st.TwitterSearchScraper(palabra_clave).get_items():
+        text = tw.rawContent
+        menciones = re.findall(r"@\w+", text)
+        menciones_filtradas = [mencion for mencion in menciones if mencion != usuario]
+        if len(menciones_filtradas) == 0:
+          lista.append([tw.date, text])
+    
+    return crear_df(lista)
 
 dic_tw = {}
 for i in usuarios:
