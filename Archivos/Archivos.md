@@ -1,3 +1,4 @@
+## Archivos
 Carpeta con los Diccionario que contienen los tweets brutos y ya procesados, cada diccionario tiene cinco claves, las cuales son los nombres de usuario de los politicos y sus valores son los tweets en los cuales son mencionados
 
 1 - dic_tw: Tweets brutos.
